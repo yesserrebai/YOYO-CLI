@@ -333,3 +333,136 @@ app.listen(serverConfig.port, () => {
 });
 `
 }
+
+
+export function createFeatureDtoFileContent(featureName){
+  return `
+  import { IsNumber,
+    IsArray,
+    IsNotEmpty,
+    IsString,
+    IsDate,
+    IsBoolean,
+    IsEnum
+} from "class-validator";
+
+export default class Create${featureName}Dto {
+};
+  `;
+}
+
+export function updateFeatureDtoFileContent(featureName){
+  return `
+  import { IsNumber,
+    IsArray,
+    IsString,
+    IsDate,
+    IsBoolean,
+    IsEnum
+} from "class-validator";
+
+export default class Update${featureName}Dto {
+};
+  `;
+}
+
+
+
+export function featureControllerFileContent(featureName){
+  return `
+  import { Router, Response, Request } from 'express';
+  import { Controller } from '../../shared';
+  import ${featureName}Service from './${featureName}.services';
+  import validationMiddleware from '../../middlewares/dataValidator';
+  import { authMiddleware } from '../../middlewares/auth';
+  import Create${featureName}Dto from './dtos/create${featureName}.dto';
+  import Update${featureName}Dto from './dtos/update${featureName}.dto';
+  import { CustomRequest } from '../../shared/interfaces/customRequest.interface';
+
+  export default class ${featureName}Controller implements Controller {
+  path="/${featureName.toLowerCase()}";
+  route = Router();
+  constructor(){
+      this.initializeRoutes();
+  };
+  initializeRoutes():void{}
+}
+  ` 
+}
+
+
+export function featureServiceFileContent(featureName){
+  return `
+  import HttpException from "../../exceptions/httpException";
+  import ${featureName}Model from "./${featureName}.model";
+  import I${featureName} from "./${featureName}.interface";
+  import Update${featureName}Dto from "./dtos/update${featureName}.dto";
+  import Create${featureName}Dto from "./dtos/create${featureName}.dto";
+
+  export default class ${featureName}Service{ 
+    // create : 
+    static create${featureName} = async (${featureName}Payload:Create${featureName}Dto):Promise<I${featureName}> => {
+        try{
+            // code ......
+        }catch( error ){
+            console.log( error );
+            throw new HttpException(500, "couldnt create ${featureName}");
+        }
+    };
+    // update : 
+    static update${featureName} = async (${featureName}Id:string , ${featureName}Payload:Update${featureName}Dto):Promise<I${featureName}> => {
+        try{
+            // code ... 
+        }catch( error ){
+            console.log( error );
+            throw new HttpException(500, "couldnt update ${featureName}");
+        }       
+    };
+    // get all the events : 
+    static get${featureName}List = async ():Promise<I${featureName}[]> =>{
+        const ${featureName}Results:I${featureName}[] = [];
+        const ${featureName}List = await ${featureName}Model.find();
+        ${featureName}List.forEach(
+          (item: I${featureName}) => {
+              ${featureName}Results.push(item);
+            }
+        )
+        return ${featureName}Results;
+    }
+}; `;
+
+} 
+
+export function featureInterfaceFileContent(featureName){
+  return `
+  import mongoose , { Document } from "mongoose";
+  export default interface I${featureName} extends Document {
+        // attributes ..
+  };
+  `;
+}
+
+
+export function featureModelFileContent(featureName){
+  return `
+import mongoose from "mongoose";
+import I${featureName} from "./event.interface";
+
+const ${featureName}Schema = new mongoose.Schema<IEvent>();
+
+
+${featureName}Schema.set('timestamps',true).toString();
+// create a mongodb model based on the schema : 
+const ${featureName}Model = mongoose.model<I${featureName}>("${featureName}",${featureName}Schema);
+export default ${featureName}Model;
+  `;
+}
+
+export function indexFileContent(featureName){
+  return `
+  export { default as ${featureName}Controller } from './${featureName}.controller';
+  export { default as ${featureName}Service } from './${featureName}.services';
+  export { default as ${featureName} } from './${featureName}.model';
+  export { default as I${featureName} } from './${featureName}.interface';
+  `;
+}
