@@ -27,7 +27,9 @@ async function main() {
   ]);
 
   if (prompt.confirmation !== 'y' && prompt.confirmation !== 'yes') {
-    console.log(info("Aborted project setup."));
+    console.log(
+      info("Aborted project setup.")
+      );
     process.exit(0);
   }
 
@@ -39,16 +41,37 @@ async function main() {
     }
   ]);
 
-  console.log(success(`Creating the outer structure for project: ${prompt.projectName}`));
-  await outterStructureModule(prompt.projectName);
-  console.log(success("Outer structure created successfully."));
+  console.log(
+    success(
+      `Creating the outer structure for project: ${prompt.projectName}`
+    )
+  );
+  await outterStructureModule(
+    prompt.projectName
+  );
+  console.log(
+    success("Outer structure created successfully.")
+  );
 
-  console.log(success(`Creating the inner structure for project: ${prompt.projectName}`));
+  console.log(
+    success(`Creating the inner structure for project: ${prompt.projectName}`
+    )
+  );
+
   await innerStructureModule(prompt.projectName);
-  console.log(success("Inner structure created successfully."));
 
-  console.log(success('Project setup complete.'));
-  console.log(info('Go to your project and run ') + warning('yarn install') + info(' to install dependencies.'));
+  console.log(
+    success("Inner structure created successfully.")
+  );
+
+  console.log(
+    success('Project setup complete.')
+  );
+  console.log(
+    info('Go to your project and run ') + 
+    warning('yarn install') + 
+    info(' to install dependencies.')
+  );
 }
 
 main();
