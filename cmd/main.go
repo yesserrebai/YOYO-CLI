@@ -1,7 +1,7 @@
 package main
 
 import (
-	outterstrcture "cli-go/internal/featureArch/outterStrcture"
+	outterstrcture "cli-go/internal/featureArch/outterStructure"
 	"fmt"
 	"os"
 
