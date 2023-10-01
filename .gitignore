@@ -1,0 +1,19 @@
+# Compiled Go binary files
+*.exe
+*.out
+*.test
+
+# Dependency directories
+/vendor/
+/go.sum
+/go.mod
+
+# Compiled Object files, Static and Dynamic libs (Unix-like)
+*.o
+*.a
+
+# Generated documentation
+/doc/
+
+# Compiled output
+/bin/
