@@ -1,6 +1,3 @@
-to build the cli use , go build cmd/main.go
-in order to generate new project, ./main project-setup
-
 # Project Name
 
 YOYO-CLI
