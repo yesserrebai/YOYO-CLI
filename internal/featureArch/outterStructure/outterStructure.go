@@ -64,8 +64,6 @@ func CreatePackageJsonFile(projectName string) {
 			"build":      "tsc",
 			"lint":       "eslint --fix src/**/*.ts ",
 			"test":       "export NODE_ENV=test && export NODE_CONFIG_DIR=./src/config && jest",
-			"test:dev":   "export NODE_ENV=test && export NODE_CONFIG_DIR=./src/config && jest --watchAll",
-			"ci":         "jest --detectOpenHandles",
 		},
 	}
 	outterStrcutureHelpers.GenerateJsonFile(filePath, jsonData)
