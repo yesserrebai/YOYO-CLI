@@ -11,7 +11,7 @@ import (
 )
 
 var projectSetup = &cobra.Command{
-	Use:   "project-setup",
+	Use:   "init",
 	Short: "generate project",
 	Run: func(cmd *cobra.Command, args []string) {
 		// Create a prompt
