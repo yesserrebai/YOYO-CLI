@@ -7,7 +7,7 @@
 /vendor/
 /go.sum
 /go.mod
-
+/go.work
 # Compiled Object files, Static and Dynamic libs (Unix-like)
 *.o
 *.a
@@ -17,3 +17,4 @@
 
 # Compiled output
 /bin/
+

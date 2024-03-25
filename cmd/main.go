@@ -1,7 +1,8 @@
 package main
 
 import (
-	outterstrcture "cli-go/internal/featureArch/outterStructure"
+	innerStructure "cli-go/internal/featureArch/innerStructure"
+	outterStructure "cli-go/internal/featureArch/outterStructure"
 	"fmt"
 	"os"
 
@@ -30,15 +31,11 @@ var projectSetup = &cobra.Command{
 			return
 		}
 		fmt.Println("generating your project", projectName)
-		outterstrcture.CreatePackageJsonFile(projectName)
-		outterstrcture.CreateDockerFile(projectName)
-		outterstrcture.CreateEnvFile(projectName)
-		outterstrcture.CreateGitIgnoreFile(projectName)
-		outterstrcture.CreateJestConfigFile(projectName)
-		outterstrcture.CreateNodemonFile(projectName)
-		outterstrcture.CreatePrettierrcFile(projectName)
-		outterstrcture.CreateReadmeFile(projectName)
-		outterstrcture.CreateTsConfigFile(projectName)
+		// Create outter structure
+		outterStructure.GenerateOutterStructure(projectName)
+		// create inner structure
+		innerStructure.GenerateInnerStructure(projectName)
+
 		fmt.Println("Now cd your project and type yarn install")
 
 	},
