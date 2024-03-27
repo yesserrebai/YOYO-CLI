@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cli-go/internal/featureArch/feature"
 	innerStructure "cli-go/internal/featureArch/innerStructure"
 	outterStructure "cli-go/internal/featureArch/outterStructure"
 	"fmt"
@@ -40,12 +41,29 @@ var projectSetup = &cobra.Command{
 
 	},
 }
+var generateFeature = &cobra.Command{
+	Use:   "g-feature",
+	Short: "generate feature",
+	Run: func(cmd *cobra.Command, args []string) {
+		// Create a prompt
+		promptFeatureName := promptui.Prompt{
+			Label: "Enter Feature name",
+		}
+		// Get Feature name
+		featureName, err := promptFeatureName.Run()
+		if err != nil {
+			fmt.Printf("Prompt failed: %v\n", err)
+			os.Exit(1)
+		}
+		feature.GenerateFeature(featureName)
+	},
+}
 
 func main() {
 	var rootCmd = &cobra.Command{Use: "yoyo"}
 
 	// Add the  command to the root command
-	rootCmd.AddCommand(projectSetup)
+	rootCmd.AddCommand(projectSetup, generateFeature)
 
 	// Execute the root command
 	if err := rootCmd.Execute(); err != nil {
