@@ -70,7 +70,7 @@ To create a new Node.js project with TypeScript support and multiple environment
 
 4. Go to your project location and type
    ```bash
-   yoyo project-setup
+   yoyo-cli init
    ```
 
 ## Contributing
