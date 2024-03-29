@@ -109,3 +109,9 @@ The use, reproduction, distribution, or modification of this software, either in
 By contributing to this project, you agree that your contributions will be licensed under the same terms and conditions as stated in the MIT License.
 
 Please make sure to review and understand the license terms before using or contributing to this project.
+# What to do next 
+1. g-env cmd to add env variable in .env file and add it env-varibales file
+2. g-crud --name cmd to create crud for specific feature, like adding routes to controller, service, helpers,and model
+3. g-jwt --verif cmd to generate jwtoken verification middleware
+4. g-jwt --signin cmd to generate jwt token 
+5. 
