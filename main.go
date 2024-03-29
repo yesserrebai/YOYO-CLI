@@ -1,7 +1,7 @@
 package main
 
 import (
-	"cli-go/internal/featureArch/feature"
+	"cli-go/cmd"
 	innerStructure "cli-go/internal/featureArch/innerStructure"
 	outterStructure "cli-go/internal/featureArch/outterStructure"
 	"fmt"
@@ -14,7 +14,7 @@ import (
 var projectSetup = &cobra.Command{
 	Use:   "init",
 	Short: "generate project",
-	Run: func(cmd *cobra.Command, args []string) {
+	Run: func(command *cobra.Command, args []string) {
 		// Create a prompt
 		promptProjectName := promptui.Prompt{
 			Label: "Enter project name",
@@ -44,7 +44,7 @@ var projectSetup = &cobra.Command{
 var generateFeature = &cobra.Command{
 	Use:   "g-feature",
 	Short: "generate feature",
-	Run: func(cmd *cobra.Command, args []string) {
+	Run: func(command *cobra.Command, args []string) {
 		// Create a prompt
 		promptFeatureName := promptui.Prompt{
 			Label: "Enter Feature name",
@@ -55,18 +55,35 @@ var generateFeature = &cobra.Command{
 			fmt.Printf("Prompt failed: %v\n", err)
 			os.Exit(1)
 		}
-		feature.GenerateFeature(featureName)
+		cmd.GenerateFeature(featureName)
+	},
+}
+var generateProvider = &cobra.Command{
+	Use:   "g-provider",
+	Short: "generate provider",
+	Run: func(command *cobra.Command, args []string) {
+		// Create a prompt
+		promptProviderName := promptui.Prompt{
+			Label: "Enter Provider name",
+		}
+		// Get Provider name
+		providerName, err := promptProviderName.Run()
+		if err != nil {
+			fmt.Printf("Prompt failed: %v\n", err)
+			os.Exit(1)
+		}
+		cmd.GenerateProvider(providerName)
 	},
 }
 
 func main() {
-	var rootCmd = &cobra.Command{Use: "yoyo"}
+	var rootcommand = &cobra.Command{Use: "yoyo"}
 
 	// Add the  command to the root command
-	rootCmd.AddCommand(projectSetup, generateFeature)
+	rootcommand.AddCommand(projectSetup, generateFeature, generateProvider)
 
 	// Execute the root command
-	if err := rootCmd.Execute(); err != nil {
+	if err := rootcommand.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}

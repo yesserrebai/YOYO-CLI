@@ -63,16 +63,25 @@ To create a new Node.js project with TypeScript support and multiple environment
 2. Run the following command to build the yoyo tool:
 
    ```bash
-   chmod +x build.sh;
+   chmod +x build.sh or ./build.sh
    ```
 
-3. export the binary to the path so you can use yoyo from any directory
 
-4. Go to your project location and type
+3. Go to your project location and type to create project
    ```bash
    yoyo-cli init
    ```
 
+## CMD 
+
+1. To create feature type 
+   ```bash
+   yoyo-cli g-feature
+   ```
+2. To create a provider
+   ```bash
+   yoyo-cli g-provider
+   ```
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to this project, follow these steps:

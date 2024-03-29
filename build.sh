@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the directory containing the main Go file
-MAIN_DIR="$(dirname "$(dirname "${BASH_SOURCE[0]}")")/cmd"
+MAIN_DIR="$(dirname "$(dirname "${BASH_SOURCE[0]}")")"
 
 # Check if the directory exists
 if [ ! -d "$MAIN_DIR" ]; then

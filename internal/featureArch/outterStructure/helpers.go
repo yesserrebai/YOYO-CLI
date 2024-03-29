@@ -125,7 +125,7 @@ func CreateJestConfigFile(projectName string) {
 		"transform": map[string]interface{}{
 			"^.+\\.ts$": "ts-jest",
 		},
-		"testMatch":       []string{"<rootDir>/src/tests/**/*.test.(ts|js)"},
+		"testMatch":       []string{"'<rootDir>/src/providers/*/tests/**/*.test.(ts|js)','<rootDir>/src/features/*/tests/**/*.test.(ts|js)'"},
 		"testEnvironment": "node",
 	}
 	Helpers.GenerateJsonFile(filepath, jsonData)

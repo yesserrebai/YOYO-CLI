@@ -186,29 +186,24 @@ export default (app: Express): void => {
 	Helpers.GenerateJavascriptFile(path, code)
 }
 func CreateDataValidatorFile(projectName string) {
-	code := `import { plainToClass } from 'class-transformer';
+	code := `import { RequestHandler } from 'express';
 import { validate, ValidationError } from 'class-validator';
-import * as express from 'express';
 import HttpException from '../exceptions/httpException';
 
-function validationMiddleware<T>(type: any): express.RequestHandler {
-  return async (req, res, next): Promise<void> => {
-    const errors: ValidationError[] = await validate(
-      plainToClass(type, req.body),
-    );
+function validationMiddleware<T>(
+  ValidationType: new (...args: any[]) => T,
+): RequestHandler {
+  return async (req, res, next) => {
+    const dtoObject = new ValidationType(req.body) as any;
+    const errors: ValidationError[] = await validate(dtoObject);
+
     if (errors.length > 0) {
       const message = errors
-        .map(
-          (error: ValidationError) =>
-            error.constraints && Object.values(error.constraints),
-        )
+        .map((error: ValidationError) => {
+          return Object.values(error.constraints || {});
+        })
         .join(', ');
-      next(
-        new HttpException(
-          400,
-          JSON.stringify({ message, requestBody: req.body }),
-        ),
-      );
+      next(new HttpException(400, message));
     } else {
       next();
     }
@@ -216,6 +211,7 @@ function validationMiddleware<T>(type: any): express.RequestHandler {
 }
 
 export default validationMiddleware;
+
 `
 	path := projectName + "/src/middlewares/dataValidator.ts"
 	Helpers.GenerateJavascriptFile(path, code)
