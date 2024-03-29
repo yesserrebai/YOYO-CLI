@@ -58,7 +58,7 @@ The project is organized as follows:
 
 To create a new Node.js project with TypeScript support and multiple environments, follow these steps:
 
-1. Open your terminal.
+1. download repo, open your terminal 
 
 2. Run the following command to build the yoyo tool:
 
@@ -67,14 +67,14 @@ To create a new Node.js project with TypeScript support and multiple environment
    ```
 
 
-3. Go to your project location and type to create project
+3. Go to your project location where you want to create 
    ```bash
    yoyo-cli init
    ```
 
 ## CMD 
 
-1. To create feature type 
+1. To create feature 
    ```bash
    yoyo-cli g-feature
    ```
