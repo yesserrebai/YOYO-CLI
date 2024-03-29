@@ -6,16 +6,39 @@ import (
 	outterStructure "cli-go/internal/featureArch/outterStructure"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
 
+func printBox(message string, width int, height int) {
+	if width < len(message)+4 {
+		panic("Width is too small to fit the message")
+	}
+
+	topBorder := strings.Repeat("*", width)
+	sideBorder := "*" + strings.Repeat(" ", width-2) + "*"
+
+	fmt.Println(topBorder)
+	for i := 0; i < height-2; i++ {
+		fmt.Println(sideBorder)
+	}
+
+	// Center the message horizontally within the box
+	messageIndent := (width - len(message)) / 2
+	messageLine := sideBorder[:messageIndent] + message + sideBorder[messageIndent+len(message):]
+
+	fmt.Println(messageLine)
+
+	fmt.Println(topBorder)
+}
+
 var projectSetup = &cobra.Command{
 	Use:   "init",
 	Short: "generate project",
 	Run: func(command *cobra.Command, args []string) {
-		// Create a prompt
+
 		promptProjectName := promptui.Prompt{
 			Label: "Enter project name",
 		}
@@ -31,13 +54,16 @@ var projectSetup = &cobra.Command{
 			fmt.Println("Error creating directory", errMkdir)
 			return
 		}
-		fmt.Println("generating your project", projectName)
+		printBox("WELCOME TO YOYO-CLI", 60, 5)
+		// to YOYO cli
 		// Create outter structure
 		outterStructure.GenerateOutterStructure(projectName)
 		// create inner structure
 		innerStructure.GenerateInnerStructure(projectName)
 
-		fmt.Println("Now cd your project and type yarn install")
+		fmt.Println("✅ Project successfully created!")
+		fmt.Printf("To get started:\n")
+		fmt.Printf("\t 👉cd your_project_name and yarn install👈\n")
 
 	},
 }

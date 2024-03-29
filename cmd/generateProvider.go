@@ -38,6 +38,6 @@ func GenerateProvider(providerName string) {
 	mockFileContent := "// mocks goes here "
 	Helpers.GenerateJavascriptFile(mockFilePath, mockFileContent)
 
-	fmt.Printf("Feature generated: %s\n", providerName)
+	fmt.Printf("✅ Provider generated: %s\n", providerName)
 
 }
