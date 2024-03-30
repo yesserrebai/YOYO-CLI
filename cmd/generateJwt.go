@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func GenerateJwtVerifMiddleware() {
+func GenerateJwtMiddleware() {
 	code := `import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import HttpException from '../exceptions/httpException';

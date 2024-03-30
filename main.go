@@ -105,8 +105,7 @@ var generateJwtMiddleware = &cobra.Command{
 	Use:   "g-jwt",
 	Short: "generate jwt middleware",
 	Run: func(command *cobra.Command, args []string) {
-
-		cmd.GenerateJwtVerifMiddleware()
+		cmd.GenerateJwtMiddleware()
 	},
 }
 
