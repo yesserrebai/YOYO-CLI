@@ -82,10 +82,6 @@ To create a new Node.js project with TypeScript support and multiple environment
    ```bash
    yoyo-cli g-provider
    ```
-3.  to generate jwtoken verification middleware and sign in middleware 
-   ````
-   g-jwt
-   ```
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to this project, follow these steps:
