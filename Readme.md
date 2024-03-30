@@ -82,6 +82,10 @@ To create a new Node.js project with TypeScript support and multiple environment
    ```bash
    yoyo-cli g-provider
    ```
+3.  to generate jwtoken verification middleware and sign in middleware 
+   ````
+   g-jwt
+   ```
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to this project, follow these steps:
@@ -110,8 +114,4 @@ By contributing to this project, you agree that your contributions will be licen
 
 Please make sure to review and understand the license terms before using or contributing to this project.
 # What to do next 
-1. g-env cmd to add env variable in .env file and add it env-varibales file
-2. g-crud --name cmd to create crud for specific feature, like adding routes to controller, service, helpers,and model
-3. g-jwt --verif cmd to generate jwtoken verification middleware
-4. g-jwt --signin cmd to generate jwt token 
-5. 
+1. g-crud --name cmd to create crud for specific feature, like adding routes to controller, service, helpers,and model

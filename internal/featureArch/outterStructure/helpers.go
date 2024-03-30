@@ -4,6 +4,7 @@ import (
 	Helpers "cli-go/internal/featureArch/helpers"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func CreatePackageJsonFile(projectName string) {
@@ -281,6 +282,18 @@ func CreateEnvFile(projectName string) {
 		return
 	}
 	defer file.Close()
+	envfileContent := `NODE_ENV=dev
+	PORT=8080`
+
+	lines := strings.Split(envfileContent, "\n")
+
+	for _, line := range lines {
+		_, err = file.Write([]byte(line))
+		if err != nil {
+			fmt.Printf("Error writing .env file content data to file: %v\n", err)
+			return
+		}
+	}
 
 }
 

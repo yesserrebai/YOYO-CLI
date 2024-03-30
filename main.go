@@ -101,12 +101,20 @@ var generateProvider = &cobra.Command{
 		cmd.GenerateProvider(providerName)
 	},
 }
+var generateJwtMiddleware = &cobra.Command{
+	Use:   "g-jwt",
+	Short: "generate jwt middleware",
+	Run: func(command *cobra.Command, args []string) {
+
+		cmd.GenerateJwtVerifMiddleware()
+	},
+}
 
 func main() {
 	var rootcommand = &cobra.Command{Use: "yoyo"}
 
 	// Add the  command to the root command
-	rootcommand.AddCommand(projectSetup, generateFeature, generateProvider)
+	rootcommand.AddCommand(projectSetup, generateFeature, generateProvider, generateJwtMiddleware)
 
 	// Execute the root command
 	if err := rootcommand.Execute(); err != nil {

@@ -35,6 +35,7 @@ func GenerateInnerStructure(projectName string) {
 	// Begin -- Middlewares folder
 	CreateDataValidatorFile(projectName)
 	CreateErrorHanlderFile(projectName)
+	CreateAuthFile(projectName)
 	// End -- Middlewares folder
 
 	// Begin -- Shared folder

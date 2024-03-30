@@ -242,6 +242,45 @@ export default (
 	path := projectName + "/src/middlewares/errorHandler.ts"
 	Helpers.GenerateJavascriptFile(path, code)
 }
+func CreateAuthFile(projectName string) {
+	code := `import jwt from 'jsonwebtoken';
+import { Request, Response, NextFunction } from 'express';
+import HttpException from '../exceptions/httpException';
+import { config } from '../config';
+
+require('dotenv').config();
+
+const secretKey: string = config.JWT_TOKEN_SECRET;
+
+const verifyTokenMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+  // eslint-disable-next-line consistent-return
+): void | HttpException => {
+  const token = req.headers.authorization?.split(' ')[1];
+
+  if (!token) {
+    return next(
+      new HttpException(401, JSON.stringify({ error: 'token not provided' })),
+    );
+  }
+
+  try {
+    jwt.verify(token, secretKey);
+    next();
+  } catch (error) {
+    return next(
+      new HttpException(403, JSON.stringify({ error: 'invalid token' })),
+    );
+  }
+};
+
+export default verifyTokenMiddleware;
+`
+	path := projectName + "/src/middlewares/auth.ts"
+	Helpers.GenerateJavascriptFile(path, code)
+}
 func CreateControllerInterfaceFile(projectName string) {
 	code := `import { Router } from 'express';
 
