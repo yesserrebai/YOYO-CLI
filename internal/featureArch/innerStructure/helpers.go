@@ -244,6 +244,7 @@ export default (
 }
 func CreateAuthFile(projectName string) {
 	code := `import jwt from 'jsonwebtoken';
+	
 import { Request, Response, NextFunction } from 'express';
 import HttpException from '../exceptions/httpException';
 import { config } from '../config';
