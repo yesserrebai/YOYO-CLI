@@ -111,3 +111,5 @@ By contributing to this project, you agree that your contributions will be licen
 Please make sure to review and understand the license terms before using or contributing to this project.
 # What to do next 
 1. g-crud --name cmd to create crud for specific feature, like adding routes to controller, service, helpers,and model
+2. g-mongo --conn this will create mongoose database connection inside provider folder
+3. g-pubsub this will create susbcription feature 
