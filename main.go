@@ -2,8 +2,6 @@ package main
 
 import (
 	"cli-go/cmd"
-	innerStructure "cli-go/internal/featureArch/innerStructure"
-	outterStructure "cli-go/internal/featureArch/outterStructure"
 	"fmt"
 	"os"
 	"strings"
@@ -55,15 +53,7 @@ var projectSetup = &cobra.Command{
 			return
 		}
 		printBox("WELCOME TO YOYO-CLI", 60, 5)
-		// to YOYO cli
-		// Create outter structure
-		outterStructure.GenerateOutterStructure(projectName)
-		// create inner structure
-		innerStructure.GenerateInnerStructure(projectName)
-
-		fmt.Println("✅ Project successfully created!")
-		fmt.Printf("To get started:\n")
-		fmt.Printf("\t 👉cd your_project_name and yarn install👈\n")
+		cmd.InitProject(projectName)
 
 	},
 }
