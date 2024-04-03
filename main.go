@@ -63,7 +63,7 @@ var generateFeature = &cobra.Command{
 	Run: func(command *cobra.Command, args []string) {
 		// Create a prompt
 		promptFeatureName := promptui.Prompt{
-			Label: "Enter Feature name",
+			Label: "Enter Feature name (🟡 name should be singular not plural)",
 		}
 		// Get Feature name
 		featureName, err := promptFeatureName.Run()
@@ -80,7 +80,7 @@ var generateProvider = &cobra.Command{
 	Run: func(command *cobra.Command, args []string) {
 		// Create a prompt
 		promptProviderName := promptui.Prompt{
-			Label: "Enter Provider name",
+			Label: "Enter Provider name(🟡 name should be singular not plural)",
 		}
 		// Get Provider name
 		providerName, err := promptProviderName.Run()
@@ -91,12 +91,29 @@ var generateProvider = &cobra.Command{
 		cmd.GenerateProvider(providerName)
 	},
 }
+var generateCrud = &cobra.Command{
+	Use:   "g-crud",
+	Short: "generate crud",
+	Run: func(command *cobra.Command, args []string) {
+		// Create a prompt
+		promptFeatureName := promptui.Prompt{
+			Label: "what feature name you want to create crud for ?",
+		}
+
+		featureName, err := promptFeatureName.Run()
+		if err != nil {
+			fmt.Printf("Prompt failed: %v\n", err)
+			os.Exit(1)
+		}
+		cmd.GenerateCrud(featureName)
+	},
+}
 
 func main() {
 	var rootcommand = &cobra.Command{Use: "yoyo"}
 
 	// Add the  command to the root command
-	rootcommand.AddCommand(projectSetup, generateFeature, generateProvider)
+	rootcommand.AddCommand(projectSetup, generateFeature, generateProvider, generateCrud)
 
 	// Execute the root command
 	if err := rootcommand.Execute(); err != nil {
