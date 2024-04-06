@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	Helpers "cli-go/internal/featureArch/helpers"
+	Helpers "cli-go/internal/helpers"
 	"fmt"
 	"strings"
 )
@@ -27,7 +27,7 @@ func GenerateFeature(featureName string) {
 	serviceFileContent := fmt.Sprintf(`export default class %sService {}`, capitalizedFeatureName)
 	Helpers.GenerateJavascriptFile(serviceFilePath, serviceFileContent)
 
-	helpersFilePath := "src/features/" + featureName + "/" + featureName + ".helpers.ts"
+	helpersFilePath := "src/features/" + featureName + "/" + featureName + ".helper.ts"
 	helpersFileContent := fmt.Sprintf(`export default class %sHelper {}`, capitalizedFeatureName)
 	Helpers.GenerateJavascriptFile(helpersFilePath, helpersFileContent)
 

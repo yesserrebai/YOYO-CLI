@@ -1,7 +1,7 @@
 package innerStructure
 
 import (
-	Helpers "cli-go/internal/featureArch/helpers"
+	Helpers "cli-go/internal/helpers"
 	"fmt"
 )
 
@@ -117,11 +117,10 @@ export { config };
 }
 func CreateServerFile(projectName string) {
 	code := `import app from './app';
-require('dotenv').config();
-const port: number = Number(process.env.PORT) || 8084;
-app.listen(port, () => {
+import { config } from './config';
+app.listen(config.PORT, () => {
   console.info(
-    Listening on port ${port}, environment:${process.env.NODE_ENV},
+    Listening on port ${port}, environment:${config.NODE_ENV},
   );
 });
 `

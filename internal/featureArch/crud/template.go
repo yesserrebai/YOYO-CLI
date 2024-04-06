@@ -2,7 +2,7 @@ package crud
 
 const controllerTemplate = `
 import Controller from "../../shared/interfaces/controller.interface";
-import CarService from "./car.service";
+import {{.CapitalizedFeatureName}}Service from "./{{ .FeatureNameLower }}.service";
 import { Request, Response, Router } from 'express';
 
 export default class {{ .FeatureName }}Controller implements Controller {
@@ -67,3 +67,44 @@ async create{{ .CapitalizedFeatureName }}(req: Request, res: Response): Promise<
   }
 }
 `
+const serviceTemplate = `
+export default class {{ .CapitalizedFeatureName }}Service{
+  static create{{ .CapitalizedFeatureName }}=async(body)=>{
+    await {{ .CapitalizedFeatureName }}Helper.create{{ .CapitalizedFeatureName }}(body)
+    throw 'not implemented'
+  }
+  static get{{ .CapitalizedFeatureName }}=async(body)=>{
+    await {{ .CapitalizedFeatureName }}Helper.get{{ .CapitalizedFeatureName }}(body)
+    throw 'not implemented'
+  }
+  static getOne{{ .CapitalizedFeatureName }}=async(body)=>{
+    await {{ .CapitalizedFeatureName }}Helper.getOne{{ .CapitalizedFeatureName }}(body)
+    throw 'not implemented'
+  }
+  static update{{ .CapitalizedFeatureName }}=async(body)=>{
+    await {{ .CapitalizedFeatureName }}Helper.update{{ .CapitalizedFeatureName }}(body)
+    throw 'not implemented'
+  }
+  static delete{{ .CapitalizedFeatureName }}=async(body)=>{
+    await {{ .CapitalizedFeatureName }}Helper.delete{{ .CapitalizedFeatureName }}(body)
+    throw 'not implemented'
+  }
+}
+`
+const helperTemplate = `export default class {{ .CapitalizedFeatureName }}Helper{
+  static create{{ .CapitalizedFeatureName }}=async(body)=>{
+    throw 'not implemented'
+  }
+  static get{{ .CapitalizedFeatureName }}=async(body)=>{
+    throw 'not implemented'
+  }
+  static getOne{{ .CapitalizedFeatureName }}=async(body)=>{
+    throw 'not implemented'
+  }
+  static update{{ .CapitalizedFeatureName }}=async(body)=>{
+    throw 'not implemented'
+  }
+  static delete{{ .CapitalizedFeatureName }}=async(body)=>{
+    throw 'not implemented'
+  }
+}`

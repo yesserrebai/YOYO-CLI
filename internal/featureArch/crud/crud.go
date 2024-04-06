@@ -6,7 +6,7 @@ import (
 	"text/template"
 )
 
-func GenerateControllerFileContent(featureName string) string {
+func GenerateFileContent(featureName string, file string) string {
 
 	// Convert featureName to lowercase for path and method names
 	featureNameLower := strings.ToLower(featureName)
@@ -23,9 +23,13 @@ func GenerateControllerFileContent(featureName string) string {
 		CapitalizedFeatureName: capitalizedFeatureName,
 	}
 
-	// Create a new template and parse the template string
 	tmpl := template.Must(template.New("controller").Parse(controllerTemplate))
-
+	if file == "service" {
+		tmpl = template.Must(template.New("service").Parse(serviceTemplate))
+	}
+	if file == "helper" {
+		tmpl = template.Must(template.New("helper").Parse(helperTemplate))
+	}
 	// Execute the template with the provided data
 	var buf bytes.Buffer
 	err := tmpl.Execute(&buf, data)

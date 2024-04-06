@@ -29,7 +29,7 @@ func GenerateJsonFile(filePath string, jsonData interface{}) {
 		return
 	}
 
-	fmt.Printf("JSON file generated: %s\n", filePath)
+	fmt.Printf("✅ JSON file generated: %s\n", filePath)
 }
 func CreateFolder(folderPath string) {
 	if err := os.MkdirAll(folderPath, os.ModePerm); err != nil {
@@ -51,5 +51,6 @@ func GenerateJavascriptFile(filePath string, content string) {
 		fmt.Printf("Error writing to file: %v\n", err)
 		return
 	}
+	fmt.Printf("✅ Code generated: %s\n", filePath)
 
 }

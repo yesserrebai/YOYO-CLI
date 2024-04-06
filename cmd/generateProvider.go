@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	Helpers "cli-go/internal/featureArch/helpers"
+	Helpers "cli-go/internal/helpers"
 	"fmt"
 	"strings"
 )
